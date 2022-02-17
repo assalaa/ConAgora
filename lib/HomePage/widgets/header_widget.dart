@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class HeaderWidget extends StatefulWidget {
+  const HeaderWidget({Key? key}) : super(key: key);
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -9,7 +11,7 @@ class _MyHomePageState extends State<HeaderWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFFFDF8),
+      backgroundColor: const Color(0xFFFFFDF8),
       body: Stack(
         children: [
           Center(
@@ -34,16 +36,6 @@ class _MyHomePageState extends State<HeaderWidget> {
                   //   color: Colors.white,
                   //   borderRadius: BorderRadius.circular(10),
                   // ),
-                  child: Container(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 150),
-                      child: Column(
-                        children: [
-                          //FlutterLogo(size: 100),
-                        ],
-                      ),
-                    ),
-                  ),
                 ),
               ],
             ),
