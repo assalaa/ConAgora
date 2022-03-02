@@ -39,12 +39,12 @@ class _ScrollableSectionState extends State<ScrollableSection>
             Container(
               //color: Colors.green,
               height: 60,
-              child: TabBar(
-                controller: _bloc.tabController,
-                //indicatorWeight: 0.1,
-                isScrollable: true,
-                tabs: _bloc.tabs.map((e) => TabWidget()).toList(),
-              ),
+              //   child: TabBar(
+              //     controller: _bloc.tabController,
+              //     //indicatorWeight: 0.1,
+              //     isScrollable: true,
+              //     tabs://_bloc.tabs.map((e) => ),
+              //  ),
             ),
             Expanded(
                 child: Container(
@@ -54,9 +54,9 @@ class _ScrollableSectionState extends State<ScrollableSection>
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 itemBuilder: (context, index) {
                   if (index.isOdd) {
-                    return CategoryWidget();
+                    return const CategoryWidget();
                   } else {
-                    return ProductItemWidget();
+                    return const ProductItemWidget();
                   }
                 },
               ),
@@ -78,14 +78,14 @@ class TabWidget extends StatelessWidget {
     //this container could be changed to a card
     return const Card(
       elevation: 6,
-      child: Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Text(
-          tabCategory.category.name,
-          style: TextStyle(
-              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 13),
-        ),
-      ),
+      // child: Padding(
+      //   padding: EdgeInsets.all(8.0),
+      //   child: Text(
+      //     tabCategory.category.name,
+      //     style: TextStyle(
+      //         color: Colors.black, fontWeight: FontWeight.bold, fontSize: 13),
+      //   ),
+      // ),
     );
   }
 }

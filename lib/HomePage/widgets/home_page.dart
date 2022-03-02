@@ -1,6 +1,6 @@
 import 'package:conagora/HomePage/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:glassmorphism_ui/glassmorphism_ui.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: ScrollableSection(),
+      body: const ScrollableSection(),
       // padding: const EdgeInsets.symmetric(vertical: 11, horizontal: 11),
       //     Padding(
       //   padding: const EdgeInsets.symmetric(vertical: 11, horizontal: 11),

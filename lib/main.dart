@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'HomePage/widgets/widgets.dart';
+import 'HomePage/screens/main_rappi_concept.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
               elevation: 2,
               titleTextStyle:
                   TextStyle(color: Colors.black, fontWeight: FontWeight.bold))),
-      home: const HomePage(),
+      home: const MainRappiConcept(),
     );
   }
 }
