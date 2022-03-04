@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'HomePage/screens/main_rappi_concept.dart';
 
-
 void main() {
   runApp(const MyApp());
 }

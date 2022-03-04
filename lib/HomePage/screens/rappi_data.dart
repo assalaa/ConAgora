@@ -28,19 +28,19 @@ const rappiCategories = [
     products: [
       RappiProduct(
           name: 'Nom du plat',
-          description: 'description goes here',
+          description: 'description goes here,description goes here',
           price: 20,
-          image: 'assets/plat1png'),
+          image: 'assets/Hamburgers.jpg'),
       RappiProduct(
           name: 'Nom du plat',
-          description: 'description goes here',
+          description: 'description goes here,description goes here',
           price: 20,
-          image: 'assets/plat1png'),
+          image: 'assets/Hamburgers.jpg'),
       RappiProduct(
           name: 'Nom du plat',
-          description: 'description goes here',
+          description: 'description goes here,description goes here',
           price: 20,
-          image: 'assets/plat1png')
+          image: 'assets/Hamburgers.jpg')
     ],
   ),
   RappiCategory(
@@ -48,19 +48,19 @@ const rappiCategories = [
     products: [
       RappiProduct(
           name: 'Nom du plat',
-          description: 'description goes here',
+          description: 'description goes here,description goes here',
           price: 20,
-          image: 'assets/plat1png'),
+          image: 'assets/Hamburgers.jpg'),
       RappiProduct(
           name: 'Nom du plat',
-          description: 'description goes here',
+          description: 'description goes here,description goes here',
           price: 20,
-          image: 'assets/plat1png'),
+          image: 'assets/Hamburgers.jpg'),
       RappiProduct(
           name: 'Nom du plat',
-          description: 'description goes here',
+          description: 'description goes here,description goes here',
           price: 20,
-          image: 'assets/plat1png')
+          image: 'assets/Hamburgers.jpg')
     ],
   ),
   RappiCategory(
@@ -68,19 +68,19 @@ const rappiCategories = [
     products: [
       RappiProduct(
           name: 'Nom du plat',
-          description: 'description goes here',
+          description: 'description goes here,description goes here',
           price: 20,
-          image: 'assets/plat1png'),
+          image: 'assets/Hamburgers.jpg'),
       RappiProduct(
           name: 'Nom du plat',
-          description: 'description goes here',
+          description: 'description goes here,description goes here',
           price: 20,
-          image: 'assets/plat1png'),
+          image: 'assets/Hamburgers.jpg'),
       RappiProduct(
           name: 'Nom du plat',
-          description: 'description goes here',
+          description: 'description goes here,description goes here',
           price: 20,
-          image: 'assets/plat1png')
+          image: 'assets/Hamburgers.jpg')
     ],
   ),
   RappiCategory(
@@ -90,17 +90,17 @@ const rappiCategories = [
           name: 'Nom du plat',
           description: 'description goes here',
           price: 20,
-          image: 'assets/plat1png'),
+          image: 'assets/Hamburgers.jpg'),
       RappiProduct(
           name: 'Nom du plat',
           description: 'description goes here',
           price: 20,
-          image: 'assets/plat1png'),
+          image: 'assets/Hamburgers.jpg'),
       RappiProduct(
           name: 'Nom du plat',
           description: 'description goes here',
           price: 20,
-          image: 'assets/plat1png')
+          image: 'assets/Hamburgers.jpg')
     ],
   ),
   RappiCategory(
@@ -110,17 +110,17 @@ const rappiCategories = [
           name: 'Nom du plat',
           description: 'description goes here',
           price: 20,
-          image: 'assets/plat1png'),
+          image: 'assets/Hamburgers.jpg'),
       RappiProduct(
           name: 'Nom du plat',
           description: 'description goes here',
           price: 20,
-          image: 'assets/plat1png'),
+          image: 'assets/Hamburgers.jpg'),
       RappiProduct(
           name: 'Nom du plat',
           description: 'description goes here',
           price: 20,
-          image: 'assets/plat1png')
+          image: 'assets/Hamburgers.jpg')
     ],
   ),
 ];

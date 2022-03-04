@@ -53,11 +53,11 @@ class _MyCardWidgetState extends State<CardWidget> {
                   height: MediaQuery.of(context).size.height / 7,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 120, right: 300),
+                  padding: const EdgeInsets.only(bottom: 110, right: 300),
                   child: Container(
                     //alignment: Alignment.center,
-                    height: MediaQuery.of(context).size.height / 5,
-                    width: MediaQuery.of(context).size.height / 4,
+                    height: MediaQuery.of(context).size.height / 6,
+                    width: MediaQuery.of(context).size.height / 5,
                     decoration: BoxDecoration(
                         image: const DecorationImage(
                             fit: BoxFit.cover,
