@@ -1,6 +1,8 @@
+import 'package:conagora/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
-import 'HomePage/screens/main_rappi_concept.dart';
+import 'widgets/category_list_section.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
               elevation: 2,
               titleTextStyle:
                   TextStyle(color: Colors.black, fontWeight: FontWeight.bold))),
-      home: const MainRappiConcept(),
+      home: const HomeScreen(),
     );
   }
 }
