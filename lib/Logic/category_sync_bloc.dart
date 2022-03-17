@@ -3,17 +3,18 @@ import 'package:conagora/data/menu_repository.dart';
 import 'package:conagora/theme/constants.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 class CategorySyncBLoC with ChangeNotifier {
   MenuRepository repo = MenuRepository();
   List<TabCategory> tabs = [];
   List<ListItem> items = [];
   List<MenuModel> menu = [];
-  //late TabController _tabController;
-  late TabController tabController;
-  ScrollController scrollController = ScrollController();
 
-  //get onCategorySelected => null;
+  TabController? tabController;
+
+  ScrollController scrollController = ScrollController();
+//get onCategorySelected => null;
   void onCategorySelected(int index) {
     final selected = tabs[index];
 
@@ -34,12 +35,13 @@ class CategorySyncBLoC with ChangeNotifier {
   void dispose() {
     scrollController.removeListener(_onScrollListener);
     scrollController.dispose();
-    tabController.dispose();
+    tabController!.dispose();
     super.dispose();
   }
 
   void init(TickerProvider ticker) async {
     menu = await repo.fetchMenu();
+
     tabController = TabController(length: menu.length, vsync: ticker);
     double offsetForm = 0.0;
     double offsetTo = 0.0;
@@ -62,7 +64,7 @@ class CategorySyncBLoC with ChangeNotifier {
         ),
       );
 
-      //final products = <RappiProduct>[];
+     
       items.add(ListItem(category: category));
       for (int j = 0; j < category.dishes!.length; j++) {
         final dish = category.dishes![j];

@@ -25,7 +25,7 @@ class MenuRepository {
  
 
   Future<List<MenuModel>> fetchMenu() async {
-    Uri api = Uri.parse("http://192.168.43.180:2020/api/v2/menu");
+    Uri api = Uri.parse("http://192.168.1.17:2020/api/v2/menu");
     try {
       var response = await get(api);
       if (response.statusCode == 200) {
