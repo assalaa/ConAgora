@@ -94,7 +94,7 @@ class _TopCategorySectionState extends State<_TopCategorySection>
                             return menuBuilder();
                           }
                       }
-                      throw (Exception);
+                      //throw (Exception);
                     },
                   ),
                 ),
@@ -106,7 +106,7 @@ class _TopCategorySectionState extends State<_TopCategorySection>
     );
   }
 
-//*****************************Menu Builder */
+//*****************************Menu Builder **************************/
   Widget menuBuilder() {
     return ListView.builder(
       controller: _bloc.scrollController,
@@ -115,16 +115,16 @@ class _TopCategorySectionState extends State<_TopCategorySection>
       itemBuilder: (context, index) {
         final item = _bloc.items[index];
         final myMenu = _bloc.menu[index];
-        final myDish = myMenu.dishes![index];
+        //final myDish = myMenu.dishes![index];
 
         if (item.isCategory) {
           /**Category section */
           return _CategoryItem(item.category!);
         } else {
           /**ListView section */
-          //return _ProductItem(item.dish!);
+          return _ProductItem(item.dish!);
           //for testing purposes
-          return const Text("data");
+          //return const Text("data");
         }
       },
     );
