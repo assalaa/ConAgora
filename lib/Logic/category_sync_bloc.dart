@@ -11,7 +11,7 @@ class CategorySyncBLoC with ChangeNotifier {
   List<ListItem> items = [];
   List<MenuModel> menu = [];
 
-  TabController? tabController;
+  late TabController tabController;
 
   ScrollController scrollController = ScrollController();
 //get onCategorySelected => null;
@@ -35,13 +35,12 @@ class CategorySyncBLoC with ChangeNotifier {
   void dispose() {
     scrollController.removeListener(_onScrollListener);
     scrollController.dispose();
-    tabController!.dispose();
+    tabController.dispose();
     super.dispose();
   }
 
   void init(TickerProvider ticker) async {
     menu = await repo.fetchMenu();
-
     tabController = TabController(length: menu.length, vsync: ticker);
     double offsetForm = 0.0;
     double offsetTo = 0.0;
@@ -64,7 +63,6 @@ class CategorySyncBLoC with ChangeNotifier {
         ),
       );
 
-     
       items.add(ListItem(category: category));
       for (int j = 0; j < category.dishes!.length; j++) {
         final dish = category.dishes![j];
