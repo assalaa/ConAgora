@@ -10,7 +10,7 @@ const _blueColor = Color(0xFF0D1863);
 class _CategoryItem extends StatelessWidget {
   //const _RappiCategoryItem({Key? key}) : super(key: key);
   const _CategoryItem(this.category);
-  final CategoryData category;
+  final MenuModel category;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class _CategoryItem extends StatelessWidget {
         height: categoryHeight,
         alignment: Alignment.centerLeft,
         child: Text(
-          category.name,
+          category.categoryName!,
           style: GoogleFonts.roboto(
             textStyle: const TextStyle(
               fontSize: 16,

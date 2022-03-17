@@ -1,7 +1,6 @@
 import 'package:conagora/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
-import 'widgets/category_list_section.dart';
 
 
 void main() {
