@@ -1,7 +1,10 @@
 import 'dart:convert';
 
+import 'package:conagora/HomePage/widgets/CategoryItem.dart';
+import 'package:conagora/HomePage/widgets/DishItem.dart';
 import 'package:conagora/Logic/category_sync_bloc.dart';
 import 'package:conagora/data/category_list_data.dart';
+import 'package:conagora/theme/constants.dart';
 //import 'package:conagora/HomePage/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,8 +15,6 @@ import '../../data/menu_repository.dart';
 import '../../widgets/card_widget.dart';
 
 const _backgroundColor = Color(0xFFF6F9FA);
-const _blueColor = Color(0xFF0D1863);
-const _greenColor = Color(0xFFEFB32C);
 const categoryHeight = 55.0;
 const productHeight = 110.0;
 
@@ -67,9 +68,9 @@ class _TopCategorySectionState extends State<_TopCategorySection>
                  ************************************************************
                  * ****************************************************** /**
                  * /             --------------------------
-                 * *********** //TAB BAR FOR CATEGORIES//**************** 
+                 * *********** //TAB BAR FOR CATEGORIES//****************
                               ---------------------------
-                 * *******************************************************/** 
+                 * *******************************************************/**
                  ************************************************************
                  */*/
 
@@ -79,7 +80,6 @@ class _TopCategorySectionState extends State<_TopCategorySection>
                   child: FutureBuilder<List<MenuModel>>(
                     future: repo.fetchMenu(),
                     builder: (context, snapshot) {
-                      final menuData = snapshot.data;
                       switch (snapshot.connectionState) {
                         case ConnectionState.waiting:
                           return const Center(
@@ -91,7 +91,8 @@ class _TopCategorySectionState extends State<_TopCategorySection>
                               child: Text('some error occured!'),
                             );
                           } else {
-                            return menuBuilder();
+                            final List<MenuModel> menuData = snapshot.data!;
+                            return menuBuilder(menuData);
                           }
                       }
                       //throw (Exception);
@@ -107,26 +108,17 @@ class _TopCategorySectionState extends State<_TopCategorySection>
   }
 
 //*****************************Menu Builder **************************/
-  Widget menuBuilder() {
-    return ListView.builder(
+  Widget menuBuilder(List<MenuModel> menuData) {
+    List<Widget> items = [];
+    for(MenuModel category in menuData){
+      items.add(CategoryItem(category.categoryName!));
+      for(Dish dish in category.dishes!){
+        items.add(DishItem(DishItemViewData.fromDish(dish)));
+      }
+    }
+    return ListView(
       controller: _bloc.scrollController,
-      itemCount: _bloc.menu.length,
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      itemBuilder: (context, index) {
-        final item = _bloc.items[index];
-        final myMenu = _bloc.menu[index];
-        //final myDish = myMenu.dishes![index];
-
-        if (item.isCategory) {
-          /**Category section */
-          return _CategoryItem(item.category!);
-        } else {
-          /**ListView section */
-          return _ProductItem(item.dish!);
-          //for testing purposes
-          //return const Text("data");
-        }
-      },
+      children: items,
     );
   }
 }
@@ -169,13 +161,13 @@ class _TabWidget extends StatelessWidget {
       opacity: selected ? 1 : 0.5,
       child: Card(
         elevation: selected ? 6 : 0,
-        color: selected ? _blueColor : Colors.white,
+        color: selected ? blueColor : Colors.white,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
             tabCategory.category.categoryName!,
             style: TextStyle(
-                color: selected ? Colors.white : _blueColor,
+                color: selected ? Colors.white : blueColor,
                 fontWeight: FontWeight.bold,
                 fontSize: 13),
           ),
@@ -185,108 +177,3 @@ class _TabWidget extends StatelessWidget {
   }
 }
 
-/**Category section */
-class _CategoryItem extends StatelessWidget {
-  //const _RappiCategoryItem({Key? key}) : super(key: key);
-  const _CategoryItem(this.category);
-  final MenuModel category;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        //color: Colors.white,
-        height: categoryHeight,
-        alignment: Alignment.centerLeft,
-        child: Text(
-          category.categoryName!,
-          style: GoogleFonts.roboto(
-            textStyle: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: _blueColor,
-            ),
-          ),
-        ));
-  }
-}
-
-/**Listview section */
-class _ProductItem extends StatelessWidget {
-  const _ProductItem(this.product);
-  final Dish product;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: productHeight,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 5),
-        child: Card(
-            elevation: 6,
-            shadowColor: Colors.black54,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Container(
-                    width: 100,
-                    height: 100,
-                    //fit: BoxFit.contain,
-                    decoration: BoxDecoration(
-                        image: const DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage("assets/plat1.png"),
-                        ),
-                        //color: Colors.green,
-                        borderRadius: BorderRadius.circular(12)),
-                    // child: Image.asset(
-                    //   product.image,
-                    //   fit: BoxFit.cover,
-                    // ),
-                  ),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        product.dishName!,
-                        style: const TextStyle(
-                            color: _blueColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16),
-                      ),
-                      Text(
-                        product.dishDescription!,
-                        maxLines: 2,
-                        style: const TextStyle(
-                            color: _blueColor,
-                            fontWeight: FontWeight.normal,
-                            fontSize: 14),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        "${product.dishPrice.toString()} Dt",
-                        style: const TextStyle(
-                            color: _greenColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15),
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            )),
-      ),
-    );
-  }
-}

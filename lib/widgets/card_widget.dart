@@ -90,7 +90,7 @@ class CustomPromotionCard extends StatelessWidget {
             child: Container(
               height: size.width * .3,
               child: SvgPicture.asset(
-                "undraw_online_groceries_a02y.svg",
+                "assets/undraw_online_groceries_a02y.svg",
               ),
               //undraw_online_groceries_a02y
             ),
