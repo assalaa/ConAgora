@@ -1,7 +1,7 @@
 import 'package:conagora/screens/restaurant_home_screen.dart';
 import 'package:flutter/material.dart';
 
-
+import 'Pages/detailsPage/details_pagev2.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
               elevation: 2,
               titleTextStyle:
                   TextStyle(color: Colors.black, fontWeight: FontWeight.bold))),
-      home: const HomeScreen(),
+      home: const DetailsPgaeV2(),
     );
   }
 }
