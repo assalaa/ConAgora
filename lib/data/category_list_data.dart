@@ -1,126 +1,55 @@
-import 'package:meta/meta.dart' show required;
+class MenuModel {
+  String? categoryId;
+  String? categoryName;
+  List<Dish>? dishes;
 
-class CategoryData {
-  const CategoryData({
-    required this.name,
-    required this.products,
-  });
-  final String name;
-  final List<ProductData> products;
+  MenuModel({this.categoryId, this.categoryName, this.dishes});
+
+  MenuModel.fromJson(Map<String, dynamic> json) {
+    categoryId = json['categoryId'];
+    categoryName = json['categoryName'];
+    if (json['dishes'] != null) {
+      dishes = <Dish>[];
+      json['dishes'].forEach((v) {
+        dishes!.add(Dish.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['categoryId'] = categoryId;
+    data['categoryName'] = categoryName;
+    if (dishes != null) {
+      data['dishes'] = dishes!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
 }
 
-class ProductData {
-  const ProductData({
-    required this.name,
-    required this.description,
-    required this.price,
-    required this.image,
-  });
-  final String name;
-  final String description;
-  final double price;
-  final String image;
+class Dish {
+  String? dishName;
+  String? dishDescription;
+  double? dishPrice;
+
+  Dish({this.dishName, this.dishDescription, this.dishPrice});
+
+  Dish.fromJson(Map<String, dynamic> json) {
+    dishName = json['dishName'];
+    dishDescription = json['dishDescription'];
+    dishPrice = json['dishPrice'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = Map<String, dynamic>();
+
+    data['dishName'] = dishName;
+    data['dishDescription'] = dishDescription;
+    data['dishPrice'] = dishPrice;
+    return data;
+  }
 }
 
-const myCategories = [
-  CategoryData(
-    name: 'Entrées',
-    products: [
-      ProductData(
-          name: 'Nom du plat',
-          description: 'description goes here,description goes here',
-          price: 20,
-          image: 'assets/Hamburgers.jpg'),
-      ProductData(
-          name: 'Nom du plat',
-          description: 'description goes here,description goes here',
-          price: 20,
-          image: 'assets/Hamburgers.jpg'),
-      ProductData(
-          name: 'Nom du plat',
-          description: 'description goes here,description goes here',
-          price: 20,
-          image: 'assets/Hamburgers.jpg')
-    ],
-  ),
-  CategoryData(
-    name: 'Salades',
-    products: [
-      ProductData(
-          name: 'Nom du plat',
-          description: 'description goes here,description goes here',
-          price: 20,
-          image: 'assets/Hamburgers.jpg'),
-      ProductData(
-          name: 'Nom du plat',
-          description: 'description goes here,description goes here',
-          price: 20,
-          image: 'assets/Hamburgers.jpg'),
-     ProductData(
-          name: 'Nom du plat',
-          description: 'description goes here,description goes here',
-          price: 20,
-          image: 'assets/Hamburgers.jpg')
-    ],
-  ),
- CategoryData(
-    name: 'Boissons',
-    products: [
-      ProductData(
-          name: 'Nom du plat',
-          description: 'description goes here,description goes here',
-          price: 20,
-          image: 'assets/Hamburgers.jpg'),
-      ProductData(
-          name: 'Nom du plat',
-          description: 'description goes here,description goes here',
-          price: 20,
-          image: 'assets/Hamburgers.jpg'),
-      ProductData(
-          name: 'Nom du plat',
-          description: 'description goes here,description goes here',
-          price: 20,
-          image: 'assets/Hamburgers.jpg')
-    ],
-  ),
-  CategoryData(
-    name: 'Soupes',
-    products: [
-      ProductData(
-          name: 'Nom du plat',
-          description: 'description goes here',
-          price: 20,
-          image: 'assets/Hamburgers.jpg'),
-      ProductData(
-          name: 'Nom du plat',
-          description: 'description goes here',
-          price: 20,
-          image: 'assets/Hamburgers.jpg'),
-      ProductData(
-          name: 'Nom du plat',
-          description: 'description goes here',
-          price: 20,
-          image: 'assets/Hamburgers.jpg')
-    ],
-  ),
-  CategoryData(
-    name: 'Deserts',
-    products: [
-      ProductData(
-          name: 'Nom du plat',
-          description: 'description goes here',
-          price: 20,
-          image: 'assets/Hamburgers.jpg'),
-      ProductData(
-          name: 'Nom du plat',
-          description: 'description goes here',
-          price: 20,
-          image: 'assets/Hamburgers.jpg'),
-     ProductData(
-          name: 'Nom du plat',
-          description: 'description goes here',
-          price: 20,
-          image: 'assets/Hamburgers.jpg')
-    ],
-  ),
-];
+//List<MenuModel> myCategories = [];
+  //),
+//];

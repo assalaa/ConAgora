@@ -1,24 +1,27 @@
 import 'package:conagora/data/category_list_data.dart';
+import 'package:conagora/data/menu_repository.dart';
 import 'package:conagora/theme/constants.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 class CategorySyncBLoC with ChangeNotifier {
+  MenuRepository repo = MenuRepository();
   List<TabCategory> tabs = [];
   List<ListItem> items = [];
-  //late TabController _tabController;
+  List<MenuModel> menu = [];
+
   late TabController tabController;
+
   ScrollController scrollController = ScrollController();
 
-  //get onCategorySelected => null;
   void onCategorySelected(int index) {
     final selected = tabs[index];
-    print(index);
+
     for (int i = 0; i < tabs.length; i++) {
-      final condition = selected.category.name == tabs[i].category.name;
-      print(condition);
-      //final tabCategory = tabs[i];
-      //if (selected == tabCategory) {
+      final condition =
+          selected.category.categoryName == tabs[i].category.categoryName;
+
       tabs[i] = tabs[i].copyWith(condition);
       //}
     }
@@ -36,19 +39,18 @@ class CategorySyncBLoC with ChangeNotifier {
     super.dispose();
   }
 
-  @override
-  void init(TickerProvider ticker) {
-    tabController = TabController(length: myCategories.length, vsync: ticker);
+  void init(TickerProvider ticker) async {
+    menu = await repo.fetchMenu();
+    tabController = TabController(length: menu.length, vsync: ticker);
     double offsetForm = 0.0;
     double offsetTo = 0.0;
-    for (int i = 0; i < myCategories.length; i++) {
-      final category = myCategories[i];
+    for (int i = 0; i < menu.length; i++) {
+      final category = menu[i];
       if (i > 0) {
-        offsetForm += myCategories[i - 1].products.length * productHeight;
+        offsetForm += menu[i - 1].dishes!.length * productHeight;
       }
-      if (i < myCategories.length - 1) {
-        offsetTo =
-            offsetForm + myCategories[i + 1].products.length * productHeight;
+      if (i < menu.length - 1) {
+        offsetTo = offsetForm + menu[i + 1].dishes!.length * productHeight;
       } else {
         offsetTo = double.infinity;
       }
@@ -61,11 +63,10 @@ class CategorySyncBLoC with ChangeNotifier {
         ),
       );
 
-      //final products = <RappiProduct>[];
       items.add(ListItem(category: category));
-      for (int j = 0; j < category.products.length; j++) {
-        final product = category.products[j];
-        items.add(ListItem(product: product));
+      for (int j = 0; j < category.dishes!.length; j++) {
+        final dish = category.dishes![j];
+        items.add(ListItem(dish: dish));
       }
     }
     scrollController.addListener(_onScrollListener);
@@ -99,16 +100,16 @@ class TabCategory {
       offsetFrom: offsetFrom,
       offsetTo: offsetTo);
 
-  final CategoryData category;
+  final MenuModel category;
   final bool selected;
   final double offsetFrom;
   final double offsetTo;
 }
 
 class ListItem {
-  final CategoryData? category;
-  final ProductData? product;
+  final MenuModel? category;
+  final Dish? dish;
 
-  const ListItem({this.category, this.product});
+  const ListItem({this.category, this.dish});
   bool get isCategory => category != null;
 }
